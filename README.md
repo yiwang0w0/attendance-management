@@ -40,3 +40,4 @@ npm run dev
 安装MySQL，创建数据库（如 attendance_db）
 配置 backend/.env 里的数据库连接信息
 可用 Sequelize 自动建表/同步
+```
