@@ -1,11 +1,21 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../views/Login.vue'
-// 你后续可以继续引入更多页面
+import Register from '../views/Register.vue'
+import Dashboard from '../views/Dashboard.vue'
+import Attendance from '../views/Attendance.vue'
 
 const routes = [
   { path: '/login', component: Login },
-  // { path: '/dashboard', component: Dashboard }, // 例子
-  { path: '/', redirect: '/login' }
+  { path: '/register', component: Register },
+  {
+    path: '/',
+    component: Dashboard,
+    children: [
+      { path: '', redirect: '/dashboard' },
+      { path: 'dashboard', component: { template: '<div>首页</div>' } },
+      { path: 'attendance', component: Attendance }
+    ]
+  }
 ]
 
 const router = createRouter({

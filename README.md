@@ -70,7 +70,7 @@ npm install
 npm run serve    # Vue CLI 项目用 serve，若为 Vite 项目用 npm run dev
 ```
 
-- 访问 http://localhost:8080/login 体验登录页
+- 访问 http://localhost:8080/login 体验登录页，登录后进入仪表盘，可在侧边栏切换到出勤管理等页面
 
 ---
 
