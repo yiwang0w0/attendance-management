@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div style="max-width:360px;margin:100px auto;padding:24px;border-radius:8px;box-shadow:0 2px 16px #eee;">
     <h2 style="text-align:center;margin-bottom:24px;">登录</h2>
