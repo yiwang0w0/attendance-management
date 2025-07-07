@@ -8,5 +8,5 @@ const app = createApp(App)
 
 app.use(ElementPlus)
 app.use(router)
-
+const cors = require('cors');
 app.mount('#app')
