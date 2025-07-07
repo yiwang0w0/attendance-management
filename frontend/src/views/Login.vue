@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div style="max-width:360px;margin:100px auto;padding:24px;border-radius:8px;box-shadow:0 2px 16px #eee;">
     <h2 style="text-align:center;margin-bottom:24px;">登录</h2>
@@ -18,7 +19,7 @@
 
 <script setup>
 import { reactive, ref } from 'vue'
-import axios from 'axios'
+import api from '../api'
 
 const form = reactive({
   username: '',
@@ -31,7 +32,7 @@ const onSubmit = async () => {
   error.value = ''
   loading.value = true
   try {
-    const res = await axios.post('http://localhost:3000/login', form)
+    const res = await api.post('/login', form)
     localStorage.setItem('token', res.data.token)
     // 可以根据角色跳转页面，这里简单alert
     alert('登录成功')
