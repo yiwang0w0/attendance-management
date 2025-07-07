@@ -9,6 +9,21 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// JWT 验证中间件
+const auth = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+  if (!authHeader) return res.status(401).json({ error: '未登录或Token缺失' });
+
+  const token = authHeader.split(' ')[1];
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;
+    next();
+  } catch (e) {
+    res.status(401).json({ error: 'Token 无效' });
+  }
+};
+
 // 健康检查
 app.get('/ping', (req, res) => res.send('pong'));
 
@@ -34,6 +49,12 @@ app.post('/login', async (req, res) => {
 
   const token = jwt.sign({ id: user.id, username: user.username, role: user.role }, process.env.JWT_SECRET, { expiresIn: '2d' });
   res.json({ message: '登录成功', token, user: { id: user.id, username: user.username, role: user.role } });
+});
+
+// 登出接口
+app.post('/logout', auth, (req, res) => {
+  // 前端清除token即可，服务器端不做状态保存
+  res.json({ message: '登出成功' });
 });
 
 // 一定要等数据库sync后再启动服务
