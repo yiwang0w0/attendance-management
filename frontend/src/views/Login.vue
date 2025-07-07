@@ -18,7 +18,7 @@
 
 <script setup>
 import { reactive, ref } from 'vue'
-import axios from 'axios'
+import api from '../api'
 
 const form = reactive({
   username: '',
@@ -31,7 +31,7 @@ const onSubmit = async () => {
   error.value = ''
   loading.value = true
   try {
-    const res = await axios.post('http://localhost:3000/login', form)
+    const res = await api.post('/login', form)
     localStorage.setItem('token', res.data.token)
     // 可以根据角色跳转页面，这里简单alert
     alert('登录成功')
